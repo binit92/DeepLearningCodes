@@ -45,6 +45,15 @@
 	* _L_ - line numbers 
 	* _DD_ - deleting cell
 
+
+*[FloydHub] Useful commands are : 
+	* floyd -cli 
+	* floyd login
+	* floyd init <name>
+	* floyd run --gpu --env tensorflow --data asdkfasd --mode jupyter
+		(Make sure unnecessary data files are not there locally )
+	* floyd status
+	* floyd stop id/name
 ## Projects 
 
 **Project 1. DLND Your first neural network**
