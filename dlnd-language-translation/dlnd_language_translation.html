@@ -12745,24 +12745,24 @@ les états-unis est parfois occupé en janvier , et il est parfois chaud en nove
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Number of Epochs</span>
 <span class="n">epochs</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="c1"># Batch Size</span>
-<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">256</span>
 <span class="c1"># RNN Size</span>
-<span class="n">rnn_size</span> <span class="o">=</span> <span class="mi">1024</span>
+<span class="n">rnn_size</span> <span class="o">=</span> <span class="mi">512</span>
 <span class="c1"># Number of Layers</span>
-<span class="n">num_layers</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">num_layers</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="c1"># Embedding Size</span>
-<span class="n">encoding_embedding_size</span> <span class="o">=</span> <span class="mi">175</span>
-<span class="n">decoding_embedding_size</span> <span class="o">=</span> <span class="mi">175</span>
+<span class="n">encoding_embedding_size</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="n">decoding_embedding_size</span> <span class="o">=</span> <span class="mi">64</span>
 <span class="c1"># Learning Rate</span>
 <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.005</span>
 <span class="c1"># Dropout Keep Probability</span>
-<span class="n">keep_probability</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="n">keep_probability</span> <span class="o">=</span> <span class="mf">0.5</span>
 <span class="n">display_step</span> <span class="o">=</span> <span class="mi">30</span>
 </pre></div>
 
@@ -12852,7 +12852,7 @@ les états-unis est parfois occupé en janvier , et il est parfois chaud en nove
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -12905,7 +12905,7 @@ les états-unis est parfois occupé en janvier , et il est parfois chaud en nove
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -13003,82 +13003,20 @@ les états-unis est parfois occupé en janvier , et il est parfois chaud en nove
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Epoch   0 Batch   30/13786 - Train Accuracy: 0.2632, Validation Accuracy: 0.1882, Loss: 3.5099
-Epoch   0 Batch   60/13786 - Train Accuracy: 0.2611, Validation Accuracy: 0.1706, Loss: 3.0897
-Epoch   0 Batch   90/13786 - Train Accuracy: 0.4421, Validation Accuracy: 0.2588, Loss: 2.5955
-Epoch   0 Batch  120/13786 - Train Accuracy: 0.3500, Validation Accuracy: 0.2706, Loss: 2.7765
-Epoch   0 Batch  150/13786 - Train Accuracy: 0.3526, Validation Accuracy: 0.2059, Loss: 2.3210
-Epoch   0 Batch  180/13786 - Train Accuracy: 0.2611, Validation Accuracy: 0.2882, Loss: 2.6299
-Epoch   0 Batch  210/13786 - Train Accuracy: 0.3412, Validation Accuracy: 0.2294, Loss: 2.1557
-Epoch   0 Batch  240/13786 - Train Accuracy: 0.3895, Validation Accuracy: 0.2941, Loss: 2.0862
-Epoch   0 Batch  270/13786 - Train Accuracy: 0.3167, Validation Accuracy: 0.2765, Loss: 2.0578
-Epoch   0 Batch  300/13786 - Train Accuracy: 0.2789, Validation Accuracy: 0.3000, Loss: 1.8105
-Epoch   0 Batch  330/13786 - Train Accuracy: 0.4529, Validation Accuracy: 0.3235, Loss: 1.6109
-Epoch   0 Batch  360/13786 - Train Accuracy: 0.4474, Validation Accuracy: 0.2824, Loss: 1.4676
-Epoch   0 Batch  390/13786 - Train Accuracy: 0.4118, Validation Accuracy: 0.2765, Loss: 1.8964
-Epoch   0 Batch  420/13786 - Train Accuracy: 0.2167, Validation Accuracy: 0.2824, Loss: 1.7560
-Epoch   0 Batch  450/13786 - Train Accuracy: 0.2900, Validation Accuracy: 0.4059, Loss: 1.3218
-Epoch   0 Batch  480/13786 - Train Accuracy: 0.3667, Validation Accuracy: 0.2059, Loss: 1.4102
-Epoch   0 Batch  510/13786 - Train Accuracy: 0.3368, Validation Accuracy: 0.3176, Loss: 1.1201
-Epoch   0 Batch  540/13786 - Train Accuracy: 0.3389, Validation Accuracy: 0.2176, Loss: 1.2399
-Epoch   0 Batch  570/13786 - Train Accuracy: 0.3111, Validation Accuracy: 0.2706, Loss: 1.0911
-Epoch   0 Batch  600/13786 - Train Accuracy: 0.3211, Validation Accuracy: 0.2235, Loss: 1.1165
+<pre>Epoch   0 Batch   30/538 - Train Accuracy: 0.3961, Validation Accuracy: 0.4554, Loss: 2.4507
+Epoch   0 Batch   60/538 - Train Accuracy: 0.3939, Validation Accuracy: 0.4576, Loss: 2.1103
+Epoch   0 Batch   90/538 - Train Accuracy: 0.4371, Validation Accuracy: 0.4686, Loss: 1.4443
+Epoch   0 Batch  120/538 - Train Accuracy: 0.4396, Validation Accuracy: 0.5009, Loss: 1.1245
+Epoch   0 Batch  150/538 - Train Accuracy: 0.3980, Validation Accuracy: 0.4469, Loss: 1.2144
+Epoch   0 Batch  180/538 - Train Accuracy: 0.4688, Validation Accuracy: 0.4949, Loss: 0.9591
+Epoch   0 Batch  210/538 - Train Accuracy: 0.4916, Validation Accuracy: 0.5069, Loss: 0.8404
+Epoch   0 Batch  240/538 - Train Accuracy: 0.5027, Validation Accuracy: 0.5405, Loss: 0.8328
+Epoch   0 Batch  270/538 - Train Accuracy: 0.5043, Validation Accuracy: 0.5563, Loss: 0.7723
+Epoch   0 Batch  300/538 - Train Accuracy: 0.5930, Validation Accuracy: 0.5898, Loss: 0.7037
+Epoch   0 Batch  330/538 - Train Accuracy: 0.5761, Validation Accuracy: 0.5811, Loss: 0.6522
+Epoch   0 Batch  360/538 - Train Accuracy: 0.5762, Validation Accuracy: 0.5879, Loss: 0.6823
+Epoch   0 Batch  390/538 - Train Accuracy: 0.6125, Validation Accuracy: 0.5941, Loss: 0.6190
 </pre>
-</div>
-</div>
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
-<span class="ansi-red-intense-fg ansi-bold">KeyboardInterrupt</span>                         Traceback (most recent call last)
-<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-17-8b554ffa681f&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
-<span class="ansi-green-fg">     46</span>                  target_sequence_length<span class="ansi-yellow-intense-fg ansi-bold">:</span> targets_lengths<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-fg">     47</span>                  source_sequence_length<span class="ansi-yellow-intense-fg ansi-bold">:</span> sources_lengths<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-intense-fg ansi-bold">---&gt; 48</span><span class="ansi-yellow-intense-fg ansi-bold">                  keep_prob: keep_probability})
-</span><span class="ansi-green-fg">     49</span> 
-<span class="ansi-green-fg">     50</span> 
-
-<span class="ansi-green-intense-fg ansi-bold">D:\programfiles\Anaconda3\envs\tensorflow\lib\site-packages\tensorflow\python\client\session.py</span> in <span class="ansi-cyan-fg">run</span><span class="ansi-blue-intense-fg ansi-bold">(self, fetches, feed_dict, options, run_metadata)</span>
-<span class="ansi-green-fg">    776</span>     <span class="ansi-green-intense-fg ansi-bold">try</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-fg">    777</span>       result = self._run(None, fetches, feed_dict, options_ptr,
-<span class="ansi-green-intense-fg ansi-bold">--&gt; 778</span><span class="ansi-yellow-intense-fg ansi-bold">                          run_metadata_ptr)
-</span><span class="ansi-green-fg">    779</span>       <span class="ansi-green-intense-fg ansi-bold">if</span> run_metadata<span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-fg">    780</span>         proto_data <span class="ansi-yellow-intense-fg ansi-bold">=</span> tf_session<span class="ansi-yellow-intense-fg ansi-bold">.</span>TF_GetBuffer<span class="ansi-yellow-intense-fg ansi-bold">(</span>run_metadata_ptr<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-
-<span class="ansi-green-intense-fg ansi-bold">D:\programfiles\Anaconda3\envs\tensorflow\lib\site-packages\tensorflow\python\client\session.py</span> in <span class="ansi-cyan-fg">_run</span><span class="ansi-blue-intense-fg ansi-bold">(self, handle, fetches, feed_dict, options, run_metadata)</span>
-<span class="ansi-green-fg">    980</span>     <span class="ansi-green-intense-fg ansi-bold">if</span> final_fetches <span class="ansi-green-intense-fg ansi-bold">or</span> final_targets<span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-fg">    981</span>       results = self._do_run(handle, final_targets, final_fetches,
-<span class="ansi-green-intense-fg ansi-bold">--&gt; 982</span><span class="ansi-yellow-intense-fg ansi-bold">                              feed_dict_string, options, run_metadata)
-</span><span class="ansi-green-fg">    983</span>     <span class="ansi-green-intense-fg ansi-bold">else</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-fg">    984</span>       results <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-yellow-intense-fg ansi-bold">]</span>
-
-<span class="ansi-green-intense-fg ansi-bold">D:\programfiles\Anaconda3\envs\tensorflow\lib\site-packages\tensorflow\python\client\session.py</span> in <span class="ansi-cyan-fg">_do_run</span><span class="ansi-blue-intense-fg ansi-bold">(self, handle, target_list, fetch_list, feed_dict, options, run_metadata)</span>
-<span class="ansi-green-fg">   1030</span>     <span class="ansi-green-intense-fg ansi-bold">if</span> handle <span class="ansi-green-intense-fg ansi-bold">is</span> <span class="ansi-green-intense-fg ansi-bold">None</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-fg">   1031</span>       return self._do_call(_run_fn, self._session, feed_dict, fetch_list,
-<span class="ansi-green-intense-fg ansi-bold">-&gt; 1032</span><span class="ansi-yellow-intense-fg ansi-bold">                            target_list, options, run_metadata)
-</span><span class="ansi-green-fg">   1033</span>     <span class="ansi-green-intense-fg ansi-bold">else</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-fg">   1034</span>       return self._do_call(_prun_fn, self._session, handle, feed_dict,
-
-<span class="ansi-green-intense-fg ansi-bold">D:\programfiles\Anaconda3\envs\tensorflow\lib\site-packages\tensorflow\python\client\session.py</span> in <span class="ansi-cyan-fg">_do_call</span><span class="ansi-blue-intense-fg ansi-bold">(self, fn, *args)</span>
-<span class="ansi-green-fg">   1037</span>   <span class="ansi-green-intense-fg ansi-bold">def</span> _do_call<span class="ansi-yellow-intense-fg ansi-bold">(</span>self<span class="ansi-yellow-intense-fg ansi-bold">,</span> fn<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">*</span>args<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-fg">   1038</span>     <span class="ansi-green-intense-fg ansi-bold">try</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-intense-fg ansi-bold">-&gt; 1039</span><span class="ansi-yellow-intense-fg ansi-bold">       </span><span class="ansi-green-intense-fg ansi-bold">return</span> fn<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">*</span>args<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">   1040</span>     <span class="ansi-green-intense-fg ansi-bold">except</span> errors<span class="ansi-yellow-intense-fg ansi-bold">.</span>OpError <span class="ansi-green-intense-fg ansi-bold">as</span> e<span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-fg">   1041</span>       message <span class="ansi-yellow-intense-fg ansi-bold">=</span> compat<span class="ansi-yellow-intense-fg ansi-bold">.</span>as_text<span class="ansi-yellow-intense-fg ansi-bold">(</span>e<span class="ansi-yellow-intense-fg ansi-bold">.</span>message<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-
-<span class="ansi-green-intense-fg ansi-bold">D:\programfiles\Anaconda3\envs\tensorflow\lib\site-packages\tensorflow\python\client\session.py</span> in <span class="ansi-cyan-fg">_run_fn</span><span class="ansi-blue-intense-fg ansi-bold">(session, feed_dict, fetch_list, target_list, options, run_metadata)</span>
-<span class="ansi-green-fg">   1019</span>         return tf_session.TF_Run(session, options,
-<span class="ansi-green-fg">   1020</span>                                  feed_dict<span class="ansi-yellow-intense-fg ansi-bold">,</span> fetch_list<span class="ansi-yellow-intense-fg ansi-bold">,</span> target_list<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-intense-fg ansi-bold">-&gt; 1021</span><span class="ansi-yellow-intense-fg ansi-bold">                                  status, run_metadata)
-</span><span class="ansi-green-fg">   1022</span> 
-<span class="ansi-green-fg">   1023</span>     <span class="ansi-green-intense-fg ansi-bold">def</span> _prun_fn<span class="ansi-yellow-intense-fg ansi-bold">(</span>session<span class="ansi-yellow-intense-fg ansi-bold">,</span> handle<span class="ansi-yellow-intense-fg ansi-bold">,</span> feed_dict<span class="ansi-yellow-intense-fg ansi-bold">,</span> fetch_list<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
-
-<span class="ansi-red-intense-fg ansi-bold">KeyboardInterrupt</span>: </pre>
 </div>
 </div>
 
@@ -13170,18 +13108,7 @@ Epoch   0 Batch  600/13786 - Train Accuracy: 0.3211, Validation Accuracy: 0.2235
 <span class="sd">    :param vocab_to_int: Dictionary to go from the words to an id</span>
 <span class="sd">    :return: List of word ids</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">sentence</span> <span class="o">=</span> <span class="n">sentence</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-    <span class="n">words</span> <span class="o">=</span> <span class="n">sentence</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-    <span class="n">word_keys</span> <span class="o">=</span> <span class="n">vocab_to_int</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-    <span class="n">seq</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_keys</span><span class="p">:</span>
-            <span class="c1">#print(&quot;found&quot;)</span>
-            <span class="n">seq</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vocab_to_int</span><span class="p">[</span><span class="n">word</span><span class="p">])</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1">#print(&quot;not found&quot;)</span>
-            <span class="n">seq</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vocab_to_int</span><span class="p">[</span><span class="s1">&#39;&lt;UNK&gt;&#39;</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">seq</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">vocab_to_int</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">vocab_to_int</span><span class="p">[</span><span class="s1">&#39;&lt;UNK&gt;&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">sentence</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
 
 
 <span class="sd">&quot;&quot;&quot;</span>
