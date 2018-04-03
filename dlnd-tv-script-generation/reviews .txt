@@ -1,0 +1,144 @@
+################################ Required Files and TEsts ####################################################################
+All required files are present :+1:
++ You can include /data directory too in the repository, so that anyone can run it. It has small size 
++ It is recommended to export your conda environment into environment.yaml file. command **conda env export -f environment.yaml**
++ All these things will help you when you will revisit your code in Github in future.
+
+
+Well Done ! :+1:
+Donald Knuth (a famous computer science pioneer) once famously stated: “Beware of bugs in the above code; I have only proved it correct, not tried it.”
+################################## PreProcessing #######################################################################
+Good work, here. In particular, using a python set function to ensure each entry in the vocab list is unique is an excellent technique to remove duplicates from a list, a
+nd something that you will find yourself doing as part of almost any dataset-preparation work.Note also, that when creating lookup tables it can also be helpful to index 
+words by the frequency each word occurs in the text. The python Counter function (part of the collections library) is a convenient way to get the information needed for 
+that approach. You can check it out here: https://pymotw.com/2/collections/counter.html
+
+
+
+############################### Build the Neural Network ###########################################################################
++ I like the fact that you named each tf tensor, and not just the one required by the rubric. This is very helpful in debugging, and something I always do for every tf placeholder.
++ I recommend using named-parameter-passing for all variables where the meaning isn’t obvious. For example, using “shape=[None, None]” when passing the default shape to the placeholder function.
+
+
+
+Awesome :blush:
++ You could implement DropoutWrapper too . It really makes neural network training easier. The topic can be revisited in *neural network* chapter
+https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/DropoutWrapper
+```
+ num =2
+ lstm = tf.contrib.rnn.BasicLSTMCell(rnn_size)
+ drop = tf.contrib.rnn.DropoutWrapper(lstm,output_keep_prob =0.5)
+ cell = tf.contrib.rnn.MultiRNNCell([drop] * num)
+```
+(Optional) Your output_keep_prob is very low. Try values like 0.8 . It may give you better results.
+
+
+Good Work :+1: 
++ Alternatively, you could also use 
+`return tf.contrib.layers.embed_sequence(input_data, vocab_size, embed_dim)`
++ Check this video on embedding 
+https://www.youtube.com/watch?v=Eku_pbZ3-Mw
+	
+Good! A uniform distribution is appropriate here, and your code is straight-forward and meets spec. It appears, though, that you might be somewhat confused about word embeddings.
+An embedding is a multi-dimensional vector used to represent words in a corpus, or dictionary, such that words with similar meanings end up at similar "locations" in the multi-dimensional space
+covered by the embedding vector. Typical embedding vectors have 300 elements, and each vector thus represents a "point" in a 300-dimensional space. So, there are, indeed, multiple dimensions.
+
+
+################################## Build RNN ##################################################################################33
+Well done :+1:
++ When activation function is specified as 'None', it takes linear activation 
++ You could also use tf.layers.dense here, It is essentially the same thing 
+https://stackoverflow.com/questions/44912297/are-tf-layers-dense-and-tf-contrib-layers-fully-connected-interchangeable
++  I encourage you to use bias initializer and weight initializer too 
+
+
+https://review.udacity.com/#!/reviews/1076966
+
+https://www.youtube.com/watch?v=yCC09vCHzF8&list=PLkt2uSq6rBVctENoVBg1TpCC7OQi31AlC&index=10
+the examples between 22:30 - 31:15
+
+
+Batching..
+
+# TODO: Implement Function
+    # Multiply batch_size by seq_length for sequence per batch
+ ```
+ number_of_batches = (len(int_text) - 1) // (batch_size * seq_length)
+ input_value = np.array(int_text[: number_of_batches * batch_size * seq_length])
+ target_value = np.array(int_text[1: number_of_batches * batch_size * seq_length + 1])
+ target_value[-1] = 0
+ input_batches = np.split(input_value.reshape(batch_size, -1), number_of_batches, 1)
+ target_batches = np.split(target_value.reshape(batch_size, -1), number_of_batches, 1)
+ batches = list(zip(input_batches, target_batches))
+ return np.array(batches)
+```
+
+
+
+Good choices, leading to an acceptable loss and a nice script with sentences of roughly the same size as those in the training set.
+
+Well done. To create some variability in the picking of words, it would be a good idea to introduce some randomness, e.g. by picking among the top-5 probabilities.
+
+ from collections import Counter
+    counters = Counter(text)
+    vocab = sorted(counters, key=counters.get, reverse=True)
+    vocab_to_int = {word: ii for ii, word in enumerate(vocab)}
+    int_to_vocab = {v:k for k, v in vocab_to_int.items()}
+    return (vocab_to_int, int_to_vocab)
+Good Work using counters and sorting of array 
+
+
+
+
+
+Epochs is no where close to the optimized value, I recommend using 100 epochs because it will get your training loss less than 1.0
+Batch size is large enough to train efficiently, but small enough to fit the data in memory. I am not satisfied with it. I recommend a value of greater than128.
+For Sequence length , take a look at the Explore the Data section. The average number of words in each line is ~11.5. This value should be about the size of the length of sentences you want to generate while still matching the structure of the data.
+Learning rate is very low, I recommend 0.01 for 100 epochs of training.
+Just couple of minimum changes are required, I know by increasing epochs will cost more training time but we want you to excel in creating deep learning models.
+I am providing you the resources for the HyperParameter Optimization. Go through it and will be really helpful for you.
+http://neupy.com/2016/12/17/hyperparameter_optimization_for_neural_networks.html
+
+
+This is one part of your project that you need to address. Choosing good values for hyper-parameters is something that just takes experience...there are generally no hard and fast/definite values, but rather a range based on both past experience and the particular problem at hand. Here are some comments that I hope will help you improve the performance of your training and produce good progress on getting the loss down and improving the resulting script output:
+
+Your choice of epochs appears to be quite a bit lower than it probably needs to be. However, the training loss does look like it decreases as it should, so your choice may be OK.
+batch_size is unreasonably low and needs to be increased considerably. Tune this to the largest value that your GPU will support for the most efficient training. GPUs need to be kept fed with the biggest chunks of data they can handle! By setting the batch size to 1, you are essentially taking the GPU completely out of the picture as you are spending all your time sending it single examples to train on. You may spend 90% or more of your training time transmitting data and very little time doing the compute-intensive processing that the GPU is good at. Try starting with a batch size of 500-1000, and only drop it down (in steps) if you find that your GPU reports out-of-memory errors.
+rnn_size: The RNN size should not really be a function of the embedding dimension. Rather, pick something on the order of 256 or 512 for this parameter. Something in this range would be typical for each layer of an RNN and should produce reasonable results for this type of application.
+embed-dim: Typically, embed dims are around 300 dimensions, even for a vocabulary of several hundred thousand words (more than what you would find for this application). By setting this to the size of the vocabulary, you are essentially one-hot-encoding the vocabulary, and not taking advantage of embedding at all. So, pick something between 200-400 (very typical values for embedding vector dimensions) and see what happens.
+seq_length: Your selected sentence length is bigger than it really should be. In particular, the rubric states that it should match the structure of the data. Please refer back to the stats reported on the training set...you should have selected a seq_length that is near, but perhaps somewhat larger than the average sentence length in the training data.
+learning_rate: Looks reasonable...perhaps at the high end of reasonable but certainly in the range that should work for this application. This is something that you need to trade off with num_epochs, and your choices work well together here (as evidenced by the reported loss as you trained the network). However, even though it's generally not a bad practice to reduce the learning rate over time, this exercise specifically instructed you not to change the learning code. So, you should really pick something close to what you have here (anything between 0.001 and 0.01 should work fine) with no adjustments over time.
+
+
+
+
+--------Probability----------------------------------------------------------------------------------------------------------------------------
++ This works, but you should add in some randomness that takes in probabilities as a parameter instead of always choosing the highest probability word.
++ Your current implementation will always choose the highest probability word, and it is preferable so the predictions don't fall into a loop of the same words (or sequences). 
+For example, if a word has .9 probability, it should not be chosen every time. Look at this example code:
+`np.random.choice(['a','b','c','d','e'], 1, p=[0.1, 0, 0.3, 0.6, 0])`
+
+You could also use np.random.choice() here https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.choice.html
+Probabilities are already calculated by the network i.e. which word is next likely to occur. To make this more concrete;
+
+:triangular_flag_on_post:
+vocab_list = ["hello", "how", "is"]
+probabilities = [0.3,0.5,0.2]
+np.random.choice(vocab_list, p=probabilities)
+Now you can see in the above that the word 'how' is likely to appear by 0.5 probability, 'hello' is likely to appear by 0.3 probability, 'is' is likely to appear by 0.2 probability.
+You are encouraged to use slight randomness when choosing the next word. If you don’t, the predictions can fall into a loop of the same words.
+
+ idx = np.random.choice(len(probabilities), p=probabilities)
+    return int_to_vocab[idx]
+
+######################################################################################################################################################
+Congratulations :tada: You have made a real good effort in finishing this project. This is an important mile stone :checkered_flag: in finishing deep-learning. 
++ I wish you all the best for next adventures :rocket:
++ Nice Read: http://colah.github.io/posts/2015-08-Understanding-LSTMs/
+
+Keep up the good work :+1:  Stay Udacious :udacious:
+
+:fire: 
++ You have made a **real good effort** in finishing this project. This is an important mile stone in  deep-learning. 
++ With suggested changes in hyperparameters, I am sure you will be able to get a loss less than 1.0 :checkered_flag: 
++ Nice Read: http://colah.github.io/posts/2015-08-Understanding-LSTMs/
