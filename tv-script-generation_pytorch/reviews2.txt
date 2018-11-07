@@ -1,0 +1,158 @@
+################################ Required Files and TEsts ####################################################################
+All required files are present :+1:
++ You can include /data directory too in the repository, so that anyone can run it. It has small size 
++ It is recommended to export your conda environment into environment.yaml file. command **conda env export -f environment.yaml**, so that you can recreate your conda environment later.
++ All these things will help you when you will revisit your code at Github in future. Check this [link](https://udacity.github.io/git-styleguide/) for best practice.
+
+All required files are present :+1:
++ It is asked to submit .html version of notebook too so that anyone can easily open the notebook.
++ It is recommended to export your conda environment into environment.yaml file. command **conda env export -f environment.yaml**, so that you can recreate your conda environment later.
++ When submitting this code to VCS (say Github), make sure to remove unnecessary files e.g. save.data files. It will reduce project size.
+
+Please include both a Jupyter notebook file and an HTML or PDF export of your project with all future Udacity submissions. I will be able to review the majority of your code, but without the HTML file, I won't be able to see what your project produced as output in your test environment.
+
+
+Well Done ! :+1:  Donald Knuth (a famous computer science pioneer) once famously said 
+> “Beware of bugs in the above code; I have only proved it correct, not tried it.”
+################################## PreProcessing #######################################################################
+Good work :+1:
++ In particular, using a python set function to ensure each entry in the vocab list is unique is an excellent technique to remove duplicates from a list, and something that you will find yourself doing as part of almost any dataset-preparation work.
++  when creating lookup tables it can also be helpful to index words by the frequency each word occurs in the text. The python Counter function (part of the collections library) is a convenient way to get the information needed for that approach. 
+https://pymotw.com/2/collections/counter.html
+```
+from collections import Counter
+
+ word_counts = Counter(text)
+    sorted_words = sorted(word_counts, key=word_counts.get, reverse=True)
+    vocab_to_int = dict()
+    int_to_vocab = dict()
+    
+    for i, word in enumerate(sorted_words):
+        vocab_to_int[word] = i
+        int_to_vocab[i] = word
+    return vocab_to_int, int_to_vocab
+```	
+
+
+:+1: 
++ when creating lookup tables it is helpful to index words by the frequency each word occurs in the text. The python Counter function (part of the collections library) is a convenient way to get the information needed for that approach. 
+
+##########################################################################################################################3
+
+:+1:
++ Converting each punctuation into explicit token is very handy when working with RNNs.
++ All 10 entries are present 
++ Do read up this [link](https://datascience.stackexchange.com/a/11421) to understand what other pre-processing steps are carried out before feeding text data to RNNs.
++ An alternate implementation would be : 
+```
+ return {
+        '.'  : '||period||',
+        ','  : '||comma||',
+        '"'  : '||quotationmark||',
+        ';'  : '||semicolon||',
+        '!'  : '||exclamationmark||',
+        '?'  : '||questionmark||',
+        '('  : '||leftparentheses',
+        ')'  : '||rightparentheses',
+        '--' : '||doubledash||',
+        '\n' : '||return||'
+   }
+```  
+
+#########################################################################################################################
+Batching DATA 
+############################
+
+:+1:
++ good job
++ :triangular_flag_on_post: You are encouraged to enable print statement so that reviewer can see the  output on sample data
+
+
+:+1: 
++ Data is converted into Tensors and formatted with TensorDataset.
++ Alternatively, you are allowed to create a batch_data function of their own, and skip the TensorDataset and DataLoader creation. Instead they may choose to create a generator that batches data similarly but returns x and y batches using `yield`.
++ Good job adding debug print statement  to verify outputs
+
+:+1: 
++ `batch_data` returns a DataLoader for the batched training data.
+
+#####################################################################################################33
+
+:+1:
++ `__init__`, `forward` and `init_hidden` functions are complete
++ it is good practice to remove unnecessary/unused methods from the code
+
+
+:+1: 
++ The RNN inclue an LSTM and one fully-connected layer. 
++ good job including an embedding layer before the LSTM. The fully connected layer comes at the end 
+
+############################################################################################################33
+RNN Training 
+
+
+
+#############################################################################################################
+Hyperparameters 
+#############################################################################################################
+
+:rocket:
++ Enough epochs to get near a minimum in the training loss. 
++ Batch size is large enough to train efficiently  
++ Size of the RNN cells is large enough to fit the data well 
++ Sequence length is about the size of the length of sentences we want to generate 
++ Size of embedding is in the range of [200-300] 
++ Learning rate seems good based on other hyper parameter 
+
+> Your efforts shows that you have really have executed it again and again to get an optimized value :fire:
+
+
+:rocket:
+
++ Batch size is large enough to train efficiently  :+1:
++ Size of the RNN cells is large enough to fit the data well :+1: 
++ Learning rate seems good based on other hyper parameter :+1:  
+
+:triangular_flag_on_post:
++ Enough epochs to get near a minimum in the training loss. But it is too high and doing extra computation unnecesarilly . Normally it would work with epochs size upto 500
++ Sequence length should be  about the size of the length of sentences we want to generate [10 to 30]
++ Size of embedding works but the good range is [200-300]
+
+> Your efforts shows that you have really have executed it again and again to get an optimized value :fire:
+
+
+	
+######################################################################################################################################################
+Congratulations :tada: 
++ Your submission reveals that you have made a great effort in finishing this project. It is an important milestone in learning about RNNs
++ Very good hyperparameters and loss . It is great that you have got everything right in first review :+1:
++ I wish you all the best for next adventures :rocket:
+
+
++ Nice Read: (Colah's Blog)   http://colah.github.io/posts/2015-08-Understanding-LSTMs/
++ Nice Read: (Andrej Karpathy) : http://karpathy.github.io/2015/05/21/rnn-effectiveness/
++ Nice Read: (Rohan Kapur) https://ayearofai.com/rohan-lenny-3-recurrent-neural-networks-10300100899b
+
+Keep up the good work :+1:  Stay Udacious :udacious:
+
+:fire: 
++ You have made a **real good effort** in finishing this project. This is an important mile stone in  deep-learning. 
++ With suggested changes in hyperparameters, I am sure you will be able to get a loss less than 1.0 :checkered_flag: 
++ Very good hyperparameters and loss . It is great that you have got everything right in first review :+1:
++ In case of doubts, You can find pointers from mentors and `discussions.udacity.com` and `knowledge.udacity.com`
++ Nice Read: (Colah's Blog)   http://colah.github.io/posts/2015-08-Understanding-LSTMs/
++ Nice Read: (Andrej Karpathy) : http://karpathy.github.io/2015/05/21/rnn-effectiveness/
++ Nice Read: (Rohan Kapur) https://ayearofai.com/rohan-lenny-3-recurrent-neural-networks-10300100899b
+
+Keep up the good work :+1:  Stay Udacious :udacious:
+
+Excellent  :rocket:
++ Your submission reveals that you have made a **great effort** in finishing this project. It is an important milestone in learning about RNNs
++ Very good hyperparameters and loss . It is great that you have got everything right in first review :+1:
++ Just add randomness in picking next word and you are good to go ! :checkered_flag:
++ Nice Read: (Colah's Blog)   http://colah.github.io/posts/2015-08-Understanding-LSTMs/
++ Nice Read: (Andrej Karpathy) : http://karpathy.github.io/2015/05/21/rnn-effectiveness/
++ Nice Read: (Rohan Kapur) https://ayearofai.com/rohan-lenny-3-recurrent-neural-networks-10300100899b
+
+Keep up the good work !  :+1: Stay Udacious :udacious:
+ 
