@@ -63,6 +63,47 @@ from collections import Counter
 Batching DATA 
 ############################
 
+```	
+  nb_sequences = len(words) - 1 - sequence_length
+        nb_batches = nb_sequences // batch_size
+
+        features = np.zeros((batch_size * nb_batches, sequence_length), dtype='long')
+        targets = np.zeros((batch_size * nb_batches,))
+        for i in range(0, batch_size * nb_batches):
+            features[i, :] = words[i:i+sequence_length]
+            targets[i] = words[i+sequence_length]
+        data = TensorDataset(torch.from_numpy(features), torch.LongTensor(targets))
+        data_loader = torch.utils.data.DataLoader(data, batch_size=batch_size)
+```
++ It is encouraged to create unit test function like this 
+```
+    
+    def test_batch_data(lst, seq_len, batch_size, expected_nb_batches, expected_nb_examples):
+    nb_batches = 0
+    nb_examples = 0
+    dl = batch_data(lst, seq_len, batch_size)
+    for x, y in dl:
+        print(x.shape)
+        nb_batches += 1
+        nb_examples += x.size(0)
+        assert x.size() == (batch_size, seq_len), " x.size(): {} found, expected {}".format(list(x.size()), [batch_size, seq_len])
+        assert y.size() == (batch_size,), "y.size(): {} found, expected {}".format(y.size(), (batch_size,))
+
+    assert expected_nb_batches == nb_batches, "nb_batches: {}, expected {}".format(nb_batches, expected_nb_batches)
+    assert expected_nb_examples == nb_examples, "nb_examples: {}, expected {}".format(nb_examples, expected_nb_examples)
+    print("Done!")
+```
+
+```    
+    
+    test_batch_data(list(range(0, 20)), 6, 4, expected_nb_batches=3, expected_nb_examples=12)
+test_batch_data(list(range(0, 20)), 4, 5, expected_nb_batches=3, expected_nb_examples=15)
+test_batch_data(list(range(0, 10)), 3, 3, expected_nb_batches=2, expected_nb_examples=6)
+```
+If there is still some doublt, this [video](https://slack-files.com/T3Q738VV1-F4P1VE8SY-6f4e7770d0) will definetly help you better understand how batching operates.
+
+
+
 :+1:
 + good job
 + :triangular_flag_on_post: You are encouraged to enable print statement so that reviewer can see the  output on sample data
