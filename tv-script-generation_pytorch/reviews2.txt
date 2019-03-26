@@ -1,15 +1,14 @@
 ################################ Required Files and TEsts ####################################################################
 All required files are present :+1:
-+ You can include /data directory too in the repository, so that anyone can run it. It has small size 
 + It is recommended to export your conda environment into environment.yaml file. command **conda env export -f environment.yaml**, so that you can recreate your conda environment later.
-+ All these things will help you when you will revisit your code at Github in future. Check this [link](https://udacity.github.io/git-styleguide/) for best practice.
++ While submitting this to any version control system like Github, make sure to include helper, data and environment files and exclude and temp files. It will help you in future if you want to re-execute it. Some [guideline](https://udacity.github.io/git-styleguide/) for best practice.
+
 
 All required files are present :+1:
-+ It is asked to submit .html version of notebook too so that anyone can easily open the notebook.
 + It is recommended to export your conda environment into environment.yaml file. command **conda env export -f environment.yaml**, so that you can recreate your conda environment later.
-+ When submitting this code to VCS (say Github), make sure to remove unnecessary files e.g. save.data files. It will reduce project size.
++ It is asked to submit .html version of notebook too so that anyone can easily open the notebook.
++ While submitting this to any version control system like Github, make sure to include helper, data and environment files and exclude and temp files. It will help you in future if you want to re-execute it. Some [guideline](https://udacity.github.io/git-styleguide/) for best practice.
 
-Please include both a Jupyter notebook file and an HTML or PDF export of your project with all future Udacity submissions. I will be able to review the majority of your code, but without the HTML file, I won't be able to see what your project produced as output in your test environment.
 
 
 Well Done ! :+1:  Donald Knuth (a famous computer science pioneer) once famously said 
@@ -63,45 +62,30 @@ from collections import Counter
 Batching DATA 
 ############################
 
-```	
-  nb_sequences = len(words) - 1 - sequence_length
-        nb_batches = nb_sequences // batch_size
 
-        features = np.zeros((batch_size * nb_batches, sequence_length), dtype='long')
-        targets = np.zeros((batch_size * nb_batches,))
-        for i in range(0, batch_size * nb_batches):
-            features[i, :] = words[i:i+sequence_length]
-            targets[i] = words[i+sequence_length]
-        data = TensorDataset(torch.from_numpy(features), torch.LongTensor(targets))
-        data_loader = torch.utils.data.DataLoader(data, batch_size=batch_size)
+Good Job :clap:
++ breaks up word id's into the appropriate sequence lengths 
++ It is recommend to add explanatory comments in between, for example :
 ```
-+ It is encouraged to create unit test function like this 
-```
+    # get number of targets we can make
+    n_targets = len(words) - sequence_length
+    # initialize feature and target 
+    feature, target = [], []
+    # loop through all targets we can make
+    for i in range(n_targets):
+        x = words[i : i+sequence_length]    # get some words from the given list
+        y = words[i+sequence_length]        # get the next word to be the target
+        feature.append(x)
+        target.append(y)
     
-    def test_batch_data(lst, seq_len, batch_size, expected_nb_batches, expected_nb_examples):
-    nb_batches = 0
-    nb_examples = 0
-    dl = batch_data(lst, seq_len, batch_size)
-    for x, y in dl:
-        print(x.shape)
-        nb_batches += 1
-        nb_examples += x.size(0)
-        assert x.size() == (batch_size, seq_len), " x.size(): {} found, expected {}".format(list(x.size()), [batch_size, seq_len])
-        assert y.size() == (batch_size,), "y.size(): {} found, expected {}".format(y.size(), (batch_size,))
-
-    assert expected_nb_batches == nb_batches, "nb_batches: {}, expected {}".format(nb_batches, expected_nb_batches)
-    assert expected_nb_examples == nb_examples, "nb_examples: {}, expected {}".format(nb_examples, expected_nb_examples)
-    print("Done!")
+    feature_tensor, target_tensor = torch.from_numpy(np.array(feature)), torch.from_numpy(np.array(target))
+    # create data
+    data = TensorDataset(feature_tensor, target_tensor)
+    # create dataloader
+    dataloader = DataLoader(data, batch_size=batch_size, shuffle=True)
+     # return a dataloader
+    return dataloader
 ```
-
-```    
-    
-    test_batch_data(list(range(0, 20)), 6, 4, expected_nb_batches=3, expected_nb_examples=12)
-test_batch_data(list(range(0, 20)), 4, 5, expected_nb_batches=3, expected_nb_examples=15)
-test_batch_data(list(range(0, 10)), 3, 3, expected_nb_batches=2, expected_nb_examples=6)
-```
-If there is still some doublt, this [video](https://slack-files.com/T3Q738VV1-F4P1VE8SY-6f4e7770d0) will definetly help you better understand how batching operates.
-
 
 
 :+1:
@@ -121,26 +105,31 @@ If there is still some doublt, this [video](https://slack-files.com/T3Q738VV1-F4
 
 :+1:
 + `__init__`, `forward` and `init_hidden` functions are complete
-+ it is good practice to remove unnecessary/unused methods from the code
++ it is recommended to remove unnecessary/unused methods from the code
 
 
 :+1: 
 + The RNN inclue an LSTM and one fully-connected layer. 
 + good job including an embedding layer before the LSTM. The fully connected layer comes at the end 
 
+
+
 ############################################################################################################33
 RNN Training 
 
+The ideal structure is as follows:
 
++ Embedding layer (nn.Embedding) before the LSTM or GRU layer.
++ The fully-connected layer comes at the end to get our desired number of outputs.
++ Extra marks for not using a dropout after LSTM and before FC layer, as the drop out is already incorporated in the LSTMs, A lot of students will add it and then end up finding convergence difficult
 
 #############################################################################################################
 Hyperparameters 
 #############################################################################################################
 
 :rocket:
-+ Enough epochs to get near a minimum in the training loss. 
++ Enough epochs to get near a minimum in the training loss. Do not hesitate to use a value as big as needed till the loss the improving
 + Batch size is large enough to train efficiently  
-+ Size of the RNN cells is large enough to fit the data well 
 + Sequence length is about the size of the length of sentences we want to generate 
 + Size of embedding is in the range of [200-300] 
 + Learning rate seems good based on other hyper parameter 
@@ -148,24 +137,39 @@ Hyperparameters
 > Your efforts shows that you have really have executed it again and again to get an optimized value :fire:
 
 
-:rocket:
 
-+ Batch size is large enough to train efficiently  :+1:
-+ Size of the RNN cells is large enough to fit the data well :+1: 
-+ Learning rate seems good based on other hyper parameter :+1:  
+You have selected good hyperparameter values but try to make loss value less than 3.5:
 
-:triangular_flag_on_post:
-+ Enough epochs to get near a minimum in the training loss. But it is too high and doing extra computation unnecesarilly . Normally it would work with epochs size upto 500
-+ Sequence length should be  about the size of the length of sentences we want to generate [10 to 30]
-+ Size of embedding works but the good range is [200-300]
+Generally recommended values are:
 
-> Your efforts shows that you have really have executed it again and again to get an optimized value :fire:
+Sequence Length: Chose a sequence length of 50 to give the network a context of approximately 10 script lines on average to consider during training. This can be derived from the fact that the average number of words per line would be around 5.5.
 
+Epochs: Start out with 10 epochs as a first trial run to make sure the network would train and increased it to 20 thereafter. So you can have better look at loss value.
+
+Batch Size: Initially start with 256 as an arbitrary start point and see that if the network was training efficiently if not then try to break it 128 for more batch training per epochs.
+
+Embedding Dimension: the vocab contained ~46,367 unique words. Now you can try to cut this down significantly by 98% to 1000 embeddings.
+
+Hidden Dimension: 128-256 hidden dimensions to give the network a solid amount of features/states to learn from.
+
+n_layers: Choosing 2-3 layers would have more benefits since you've learned in the coursework. Try to find out which works best
+
+lr: Not too big to cause no convergence and not too small to cause slow convergence.
+
+
+Generally recommended values are:
+Sequence Length: Chose a sequence length of 50 to give the network a context of approximately 10 script lines on average to consider during training. This can be derived from the fact that the average number of words per line would be around 5.5.
+Epochs: Start out with 10 epochs as a first trial run to make sure the network would train and increased it to 20 thereafter. So you can have better look at loss value.
+Batch Size: Initially start with 256 as an arbitrary start point and see that if the network was training efficiently if not then try to break it 128 for more batch training per epochs.
+Embedding Dimension: the vocab contained ~46,367 unique words. Now you can try to cut this down significantly by 98% to 1000 embeddings.
+Hidden Dimension: 128-256 hidden dimensions to give the network a solid amount of features/states to learn from.
+n_layers: Choosing 2-3 layers would have more benefits since you've learned in the coursework. Try to find out which works best
+lr: Not too big to cause no convergence and not too small to cause slow convergence.
 
 	
 ######################################################################################################################################################
 Congratulations :tada: 
-+ Your submission reveals that you have made a great effort in finishing this project. It is an important milestone in learning about RNNs
++ Your submission reveals that you have made an **excellent effort** in finishing this project. It is an important milestone in learning about RNNs
 + Very good hyperparameters and loss . It is great that you have got everything right in first review :+1:
 + I wish you all the best for next adventures :rocket:
 
@@ -176,9 +180,21 @@ Congratulations :tada:
 
 Keep up the good work :+1:  Stay Udacious :udacious:
 
+
+
+Congratulations :tada:
++ I recommend you to keep this project saved somewhere so that you can refer it . probably github, bitbucket,gitlab or google drive.
+
+You can try applying what you learned to one of these problems.
+
+Generate your own Bach music using like [DeepBach](https://arxiv.org/pdf/1612.01010.pdf)
+Predict seizures in intracranial EEG recordings on [Kaggle](https://www.kaggle.com/c/seizure-prediction)
+
+
+
 :fire: 
-+ You have made a **real good effort** in finishing this project. This is an important mile stone in  deep-learning. 
-+ With suggested changes in hyperparameters, I am sure you will be able to get a loss less than 1.0 :checkered_flag: 
++ You have made an **excellent effort** in finishing this project. This is an important mile stone in  deep-learning. 
++ With suggested changes in hyperparameters, I am sure you will be able to get a loss less than 3.5 :checkered_flag: 
 + Very good hyperparameters and loss . It is great that you have got everything right in first review :+1:
 + In case of doubts, You can find pointers from mentors and `discussions.udacity.com` and `knowledge.udacity.com`
 + Nice Read: (Colah's Blog)   http://colah.github.io/posts/2015-08-Understanding-LSTMs/
