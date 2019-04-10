@@ -122,6 +122,20 @@ The ideal structure is as follows:
 + Embedding layer (nn.Embedding) before the LSTM or GRU layer.
 + The fully-connected layer comes at the end to get our desired number of outputs.
 + Extra marks for not using a dropout after LSTM and before FC layer, as the drop out is already incorporated in the LSTMs, A lot of students will add it and then end up finding convergence difficult
++ You can try to add more than one fc:
+```
+# init
+self.fcc=nn.Linear(self.hidden_dim, self.hidden_dim)
+self.fcc2=nn.Linear(self.hidden_dim,self.output_size)
+....
+# forward
+output,hidden=self.lstm(embedded,hidden)
+lstm_output = output.contiguous().view(-1, self.hidden_dim)
+output=self.dropout(output) 
+output= self.fcc(output)
+output=self.dropout(output)
+output=self.fcc2(output)
+```        		
 
 #############################################################################################################
 Hyperparameters 

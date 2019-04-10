@@ -19,9 +19,7 @@ Good work :+1:
 + In particular, using a python set function to ensure each entry in the vocab list is unique is an excellent technique to remove duplicates from a list, and something that you will find yourself doing as part of almost any dataset-preparation work.
 +  when creating lookup tables it can also be helpful to index words by the frequency each word occurs in the text. The python Counter function (part of the collections library) is a convenient way to get the information needed for that approach. 
 https://pymotw.com/2/collections/counter.html
-
-:+1: 
-+ when creating lookup tables it is helpful to index words by the frequency each word occurs in the text. The python Counter function (part of the collections library) is a convenient way to get the information needed for that approach. 
+ 
 ```
  word_counts = Counter(text)
     sorted_words = sorted(word_counts, key=word_counts.get, reverse=True)
@@ -65,12 +63,11 @@ https://pymotw.com/2/collections/counter.html
 
 
 ####################################################################################################################################
-
 Awesome :blush:
 + You've correctly stacked BasicLSTMCell into a MultiRNNCell, creating the core of your RNN.
 + For this project, 1 or 2 number of lstm cells provided the best output.
 
-+ Although it is not required, bit You could try implementing  DropoutWrapper too . 
++ Although it is not required, but You could try implementing  DropoutWrapper too . 
 https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/DropoutWrapper
 + An alternate implementation would be:
 ```
@@ -80,6 +77,7 @@ https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/DropoutWrapper
  cell = tf.contrib.rnn.MultiRNNCell([drop] * num)
 ```
 ########################################################################################################################################
+
 
 Good Work :+1: 
 + Alternatively, you could also use 
@@ -108,7 +106,7 @@ covered by the embedding vector. Typical embedding vectors have 300 elements, an
 
 
 :clap:
-+ When activation function is specified as 'None', it takes linear activation. I recommend you to add activation parameter as "activation=None". It makes implementation more readable. 
++ When activation function is specified as 'None', it takes linear activation. 
 + Reference on [activation](https://medium.com/the-theory-of-everything/understanding-activation-functions-in-neural-networks-9491262884e0)
 + You could also use **tf.layers.dense** here, It is essentially the same [thing](https://stackoverflow.com/questions/44912297/are-tf-layers-dense-and-tf-contrib-layers-fully-connected-interchangeable11)
 
@@ -221,11 +219,19 @@ You could also use np.random.choice() here https://docs.scipy.org/doc/numpy/refe
 idx = np.random.choice(len(probabilities), p=probabilities)
 return int_to_vocab[idx]
 ```
+or,
+```
+    indices      = np.argsort(-probabilities)
+    choice_probs = np.array([probabilities[idx] for idx in indices])
+    renormaized_probs = choice_probs / choice_probs.sum()
+    choice = np.random.choice(indices, p=renormaized_probs)
+    return int_to_vocab[choice]
+```
 
 	
 ######################################################################################################################################################
 Congratulations :tada: 
-+ Your submission reveals that you have made a great effort in finishing this project. It is an important milestone in learning about RNNs
++ Your submission reveals that you have made an **excellent effort** in finishing this project. It is an important milestone in learning about RNNs
 + Very good hyperparameters and loss . It is great that you have got everything right in first review :+1:
 + I wish you all the best for next adventures :rocket:
 + Nice Read: (Colah's Blog)   http://colah.github.io/posts/2015-08-Understanding-LSTMs/
@@ -235,7 +241,7 @@ Congratulations :tada:
 Keep up the good work :+1:  Stay Udacious :udacious:
 
 :fire: 
-+ You have made a **real good effort** in finishing this project. This is an important mile stone in  deep-learning. 
++ You have made an **excellent effort** in finishing this project. This is an important mile stone in  deep-learning. 
 + With suggested changes in hyperparameters, I am sure you will be able to get a loss less than 1.0 :checkered_flag: 
 + Very good hyperparameters and loss . It is great that you have got everything right in first review :+1:
 + In case of doubts, You can find pointers from mentors and `discussions.udacity.com` and `knowledge.udacity.com`
@@ -246,7 +252,7 @@ Keep up the good work :+1:  Stay Udacious :udacious:
 Keep up the good work :+1:  Stay Udacious :udacious:
 
 Excellent  :rocket:
-+ Your submission reveals that you have made a **great effort** in finishing this project. It is an important milestone in learning about RNNs
++ Your submission reveals that you have made an **excellent effort** in finishing this project. It is an important milestone in learning about RNNs
 + Very good hyperparameters and loss . It is great that you have got everything right in first review :+1:
 + Just add randomness in picking next word and you are good to go ! :checkered_flag:
 + Nice Read: (Colah's Blog)   http://colah.github.io/posts/2015-08-Understanding-LSTMs/
